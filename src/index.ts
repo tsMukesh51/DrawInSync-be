@@ -1,10 +1,24 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import 'dotenv/config';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { usersTable } from '#repo/db/schema.js';
+import { db } from '#repo/db/db.js';
 
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
+app.get('/', async (c) => {
+  await db.insert(usersTable).values({
+    userName: "tsMukesh",
+    email: "tsmukesh96@email.com",
+    password: "dksldf",
+    profilePic: "nothing.com/index.jpg",
+    updatedAt: new Date(),
+  });
+
+  const users = await db.select().from(usersTable);
+
+  return c.text(JSON.stringify(users));
 });
 
 serve({

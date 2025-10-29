@@ -1,6 +1,12 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "#repo/*": [
+        "./src/*"
+      ],
+    },
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
@@ -40,6 +46,7 @@
     "skipLibCheck": true,
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "drizzle.config.ts",
   ]
 }
