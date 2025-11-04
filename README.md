@@ -18,3 +18,9 @@ pnpm run dev
 ```
 
 ## Architecture
+
+![Architecture](./images/DrBe.png)
+
+## Model
+
+![ER Diagram](./images/prisma-erd.png)
