@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1761731527411,
-      "tag": "0000_bored_amphibian",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1761733188965,
-      "tag": "0001_typical_zombie",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1761733758808,
-      "tag": "0002_overconfident_lila_cheney",
+      "when": 1762328355267,
+      "tag": "0000_init",
       "breakpoints": true
     }
   ]
