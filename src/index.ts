@@ -4,21 +4,14 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { userTable } from '#repo/db/schema.js';
 import { db } from '#repo/db/db.js';
+import { boardRoute } from '#repo/routes/boardRoutes.js';
 
-const app = new Hono()
+const app = new Hono();
+
+app.route("/board", boardRoute);
 
 app.get('/', async (c) => {
-  await db.insert(userTable).values({
-    userName: "tsMukesh",
-    email: "tsmukesh96@email.com",
-    password: "dksldf",
-    profilePic: "nothing.com/index.jpg",
-    updatedAt: new Date(),
-  });
-
-  const users = await db.select().from(userTable);
-
-  return c.text(JSON.stringify(users));
+  return c.text("Hello Workd");
 });
 
 serve({

@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, jsonb, pgEnum, pgTable, primaryKey, timestamp, varchar } from "drizzle-orm/pg-core";
 
-export const collaboratorTypeEnum = pgEnum('collaborator_type', ["EDITOR", "VIEWER"]);
+export const collaboratorTypeEnum = pgEnum('collaborator_type', ["VIEWER", "EDITOR",]);
 
 export const shapeTypeEnum = pgEnum('shape_type', ["RECTANGLE", "CIRCLE", "LINE", "TRIANGLE"])
 
@@ -33,7 +33,7 @@ export const boardTable = pgTable("board", {
 export const boardCollaboratorTable = pgTable("board_collaborator", {
   collaboratorId: integer().notNull().references(() => userTable.id),
   boardId: integer().notNull().references(() => boardTable.id),
-  collaboratorType: collaboratorTypeEnum(),
+  collaboratorType: collaboratorTypeEnum().default(collaboratorTypeEnum.enumValues[0]),
   createdAt: timestamp().defaultNow(),
   updatedAt: timestamp().defaultNow(),
   deletedAt: timestamp(),
