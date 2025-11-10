@@ -13,22 +13,25 @@
   "license": "ISC",
   "packageManager": "pnpm@10.18.1",
   "dependencies": {
-    "@hono/node-server": "^1.19.5",
+    "@hono/node-server": "^1.19.6",
+    "@t3-oss/env-core": "^0.13.8",
     "argon2": "^0.44.0",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
-    "hono": "^4.10.1",
+    "hono": "^4.10.4",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
-    "prisma": "^6.17.1"
+    "prisma": "^6.19.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@hono/zod-validator": "^0.7.4",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.19.24",
     "@types/pg": "^8.15.6",
     "drizzle-kit": "^0.31.6",
-    "tsx": "^4.7.1",
-    "typescript": "^5.8.3"
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
   },
   "imports": {
     "#repo": "./src/*"

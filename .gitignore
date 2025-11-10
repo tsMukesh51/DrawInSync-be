@@ -15,8 +15,9 @@ dist/
 node_modules/
 
 # env
-.env
+.env*
 .env.production
+!.env.example
 
 # logs
 logs/

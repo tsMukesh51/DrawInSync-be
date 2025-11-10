@@ -7,6 +7,7 @@ export const shapeTypeEnum = pgEnum('shape_type', ["RECTANGLE", "CIRCLE", "LINE"
 
 export const userTable = pgTable("user", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  userProfileId: integer().references(() => userProfileTable.id),
   userName: varchar({ length: 255 }).notNull().unique(),
   password: varchar({ length: 255 }).notNull(),
   createdAt: timestamp().defaultNow(),
@@ -15,10 +16,13 @@ export const userTable = pgTable("user", {
 });
 
 export const userProfileTable = pgTable("user_profile", {
-  userId: integer().references(() => userTable.id),
-  email: varchar({ length: 255 }).notNull().unique(),
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  email: varchar({ length: 255 }).unique(),
+  emailVerifiedAt: timestamp(),
+  telegramId: varchar({ length: 255 }).unique(),
+  telegramIdVerifiedAt: timestamp(),
   profilePic: varchar({ length: 255 }),
-}, (t) => [primaryKey({ columns: [t.userId] })]);
+});
 
 export const boardTable = pgTable("board", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -51,14 +55,14 @@ export const elementTable = pgTable("element", {
 })
 
 export const userRelations = relations(userTable, ({ one, many }) => ({
-  profileInfo: one(userProfileTable),
+  userProfile: one(userProfileTable, { fields: [userTable.userProfileId], references: [userProfileTable.id] }),
   boards: many(boardTable),
   boardCollaborators: many(boardCollaboratorTable),
   elements: many(elementTable),
 }));
 
 export const userProfileRelations = relations(userProfileTable, ({ one }) => ({
-  user: one(userTable, { fields: [userProfileTable.userId], references: [userTable.id] }),
+  user: one(userTable),
 }));
 
 export const boardRelations = relations(boardTable, ({ one, many }) => ({
